@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-LIBRARIES="libuchardet libfribidi libfreetype libharfbuzz libass ffmpeg libmpv"
+LIBRARIES="libplacebo libuchardet libfribidi libfreetype libharfbuzz libass ffmpeg libmpv"
 # LGPL licensed projects should be built as dynamic framework bundles (todo: automate that in this script)
 # FRAMEWORKS="libmpv ffmpeg libfribidi"
 
@@ -97,6 +97,9 @@ for ARCH in $ARCHS; do
 				;;
             "ffmpeg" )
 				mkdir -p $SCRATCH/$ARCH/ffmpeg && cd $_ && $SCRIPTS/ffmpeg-build
+				;;
+            "libplacebo" )
+				mkdir -p $SCRATCH/$ARCH/libplacebo && cd $_ && $SCRIPTS/libplacebo-build
 				;;
             "libmpv" )
                 if [[ "$ENVIRONMENT" = "development" ]]; then

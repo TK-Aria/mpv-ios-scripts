@@ -2,6 +2,7 @@
 
 # Change to preferred versions
 MPV_VERSION="0.29.1b"
+LIBPLACEBO_VERSION="1.18.0b"
 FFMPEG_VERSION="4.1"
 LIBASS_VERSION="0.14.0"
 FREETYPE_VERSION="2.9.1"
@@ -10,6 +11,7 @@ FRIBIDI_VERSION="1.0.5"
 UCHARDET_VERSION="0.0.6"
 
 MPV_URL="https://github.com/stps/mpv/archive/v$MPV_VERSION.tar.gz"
+LIBPLACEBO_URL="https://github.com/stps/libplacebo/archive/v$LIBPLACEBO_VERSION.tar.gz"
 FFMPEG_URL="http://www.ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.bz2"
 LIBASS_URL="https://github.com/libass/libass/releases/download/$LIBASS_VERSION/libass-$LIBASS_VERSION.tar.gz"
 FREETYPE_URL="https://sourceforge.net/projects/freetype/files/freetype2/$FREETYPE_VERSION/freetype-$FREETYPE_VERSION.tar.bz2"
@@ -19,7 +21,7 @@ UCHARDET_URL="https://www.freedesktop.org/software/uchardet/releases/uchardet-$U
 
 rm -rf src
 mkdir -p src downloads
-for URL in $UCHARDET_URL $FREETYPE_URL $HARFBUZZ_URL $FRIBIDI_URL $LIBASS_URL $FFMPEG_URL $MPV_URL; do
+for URL in $UCHARDET_URL $FREETYPE_URL $HARFBUZZ_URL $FRIBIDI_URL $LIBASS_URL $FFMPEG_URL $LIBPLACEBO_URL $MPV_URL; do
 	TARNAME=${URL##*/}
     if [ ! -f "downloads/$TARNAME" ]; then
 	    curl -f -L -- $URL > downloads/$TARNAME
@@ -29,6 +31,7 @@ for URL in $UCHARDET_URL $FREETYPE_URL $HARFBUZZ_URL $FRIBIDI_URL $LIBASS_URL $F
 done
 
 echo "\033[1;32mDownloaded: \033[0m\n mpv: $MPV_VERSION \
+                            \n libplacebo: $LIBPLACEBO_VERSION \
                             \n FFmpeg: $FFMPEG_VERSION \
                             \n libass: $LIBASS_VERSION \
                             \n freetype: $FREETYPE_VERSION \

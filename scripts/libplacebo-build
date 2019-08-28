@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+
+cd $SRC/libplacebo*
+meson ./build --cross-file ios_cross_arm64.txt
+ninja -Cbuild install
