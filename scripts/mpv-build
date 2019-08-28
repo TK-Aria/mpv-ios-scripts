@@ -9,6 +9,7 @@ OPTS="--prefix=$SCRATCH/$ARCH \
 	--enable-libmpv-static \
 	--enable-ios-gl \
 	--enable-gl \
+	--enable-vulkan \
 	--disable-javascript \
 	--disable-libbluray \
 	--disable-vapoursynth \
