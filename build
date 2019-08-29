@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-LIBRARIES="libplacebo libuchardet libfribidi libfreetype libharfbuzz libass ffmpeg libmpv"
+LIBRARIES="shaderc libuchardet libfribidi libfreetype libharfbuzz libass ffmpeg libplacebo libmpv"
 # LGPL licensed projects should be built as dynamic framework bundles (todo: automate that in this script)
 # FRAMEWORKS="libmpv ffmpeg libfribidi"
 
@@ -80,6 +80,9 @@ for ARCH in $ARCHS; do
     
     for LIBRARY in $LIBRARIES; do
         case $LIBRARY in
+            "shaderc" )
+				mkdir -p $SCRATCH/$ARCH/shaderc && cd $_ && $SCRIPTS/shaderc-build
+				;;
             "libfribidi" )
 				mkdir -p $SCRATCH/$ARCH/fribidi && cd $_ && $SCRIPTS/fribidi-build
 				;;

@@ -1,0 +1,4 @@
+rm -rf src
+rm -rf downloads
+rm -rf scratch
+rm -rf lib
