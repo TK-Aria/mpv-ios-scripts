@@ -3,21 +3,55 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+
 trigger:
 - master
 
-pool:
-  vmImage: 'macos-latest'
+jobs:
 
-steps:
-- task: CmdLine@2
-  displayName: Download Library
-  inputs:
-    script: |
-      ./download.sh > log.txt
+  # development.
+  - job: development_build
+    displayName: development build
+    pool:
+      vmImage: 'macos-latest'
 
-- task: CmdLine@2
-  displayName: Build Library
-  inputs:
-    script: |
-      ./download.sh > log.txt
+    steps:
+    - checkout: self
+      fetchDepth: 1
+      submodules: recursive
+
+    - task: CmdLine@2
+      displayName: Download Library
+      inputs:
+        script: |
+          ./download.sh > download_log.txt
+
+    - task: CmdLine@2
+      displayName: Build Library
+      inputs:
+        script: |
+          ./build.sh -e development > log.txt
+
+  # distribution.
+  - job: distribution_build
+    displayName: distribution build
+    pool:
+      vmImage: 'macos-latest'
+
+    steps:
+    - checkout: self
+      fetchDepth: 1
+      submodules: recursive
+
+    - task: CmdLine@2
+      displayName: Download Library
+      inputs:
+        script: |
+          ./download.sh > download_log.txt
+
+    - task: CmdLine@2
+      displayName: Build Library
+      inputs:
+        script: |
+          ./build.sh -e distribution > log.txt
+
