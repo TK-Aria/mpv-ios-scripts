@@ -31,6 +31,13 @@ jobs:
       inputs:
         script: |
           ./build.sh -e development > log.txt
+          
+    - task: PublishBuildArtifacts@1
+      displayName: 'postprocess: Artifact Project'
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)'
+        ArtifactName: 'developmennt project'
+        publishLocation: 'Container'
 
   # distribution.
   - job: distribution_build
@@ -54,4 +61,11 @@ jobs:
       inputs:
         script: |
           ./build.sh -e distribution > log.txt
+          
+    - task: PublishBuildArtifacts@1
+      displayName: 'postprocess: Artifact Project'
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)'
+        ArtifactName: 'distribution project'
+        publishLocation: 'Container'
 
